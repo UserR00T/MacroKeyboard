@@ -1,13 +1,13 @@
 # Macro Keyboard
-![](/.media/final1.jpg)
+[![](/.media/final1.min.jpg)](/.media/final1.jpg)
 A 15-key Arduino-based, mechanical macro keyboard powered by the Seeeduino XIAO.
 
 # Fork
 I made this forked version because I had no use for the bluetooth functionality, and wanted to keep it simple and sweet. I decided to use a different microcontroller than the original model, as the Seeeduino XIAO is faster, smaller, and connects using USB-C instead of the default Micro-B that the Pro Micro has.
 # <sub><sup>(even more)</sup></sub> Glamour shots
-![](/.media/final2.jpg)
-![](/.media/final3.jpg)
-![](/.media/final4.jpg)
+[![](/.media/final2.min.jpg)](/.media/final2.jpg)
+[![](/.media/final3.min.jpg)](/.media/final3.jpg)
+[![](/.media/final4.min.jpg)](/.media/final4.jpg)
 
 # How it works
 The keyboard uses a key matrix which maps the physical buttons to the keys <kbd>F10</kbd> to <kbd>F24</kbd>. These can afterwards be mapped to for example, execute a script. I used "Kwin Custom Shortcuts" for this, as that allows you to execute a different option based on the focused application. This also allows you to directly run a [bash] script, so you can script exactly what each button will do.  
