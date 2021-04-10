@@ -1,67 +1,47 @@
 # Macro Keyboard
-A 15-key Arduino-based, bluetooth wireless, mechanical macro keyboard.
-I made this to improve my workflow at work and to avoid the finger gymnastics characteristic to iOS development. It charges and can be programed on-the-fly via USB-C.
-# Glamour shots
-![](/rsc/final3.jpg)
-![](/rsc/final1.jpg)
-![](/rsc/final2.jpg)
+![](/.media/final1.jpg)
+A 15-key Arduino-based, mechanical macro keyboard powered by the Seeeduino XIAO.
+
+# Fork
+I made this forked version because I had no use for the bluetooth functionality, and wanted to keep it simple and sweet. I decided to use a different microcontroller than the original model, as the Seeeduino XIAO is faster, smaller, and connects using USB-C instead of the default Micro-B that the Pro Micro has.
+# <sub><sup>(even more)</sup></sub> Glamour shots
+![](/.media/final2.jpg)
+![](/.media/final3.jpg)
+![](/.media/final4.jpg)
+
 # How it works
-The keyboard is designed to work in conjunction with a tool like BetterTouchTool, which maps key presses to other shortcuts, based on the app in focus. Although I haven't tested it (lacking a PC with bluetooth), this should work just fine on Windows using a tool like AutoHotkey
-
-The keyboard transmits <kbd>CMD</kbd> + <kbd>control</kbd> + <kbd>shift</kbd> + <kbd>F1</kbd> -> <kbd>F12</kbd> and <kbd>1</kbd> ->  <kbd>3</kbd>, to cover all the keys.
-
-Using BetterTouchTool, these inputs can be mapped to various actions for each app.
-
-Besides this, the top left key "master", when long pressed, transmits <kbd>CMD</kbd> + <kbd>control</kbd> + <kbd>shift</kbd> + <kbd>option</kbd> + <kbd>F1</kbd> and puts the keyboard in sleep mode. This is useful for setting up a shortcut to lock the Mac.
-
-After 5 minutes where no keys are pressed, the keyboard turns off the bluetooth module and the arduino goes to deep sleep. The "master" key acts as a wake-up key and will turn the arduino and the bluetooth back on.
-In my use, the battery lasts about 2-3 weeks.
-
-At startup, holding the *master* key and the first key on its right and then turning on the power, will force *Pairing mode*
-Holding *master* and the second key on its right will clear all paired devices.
+The keyboard uses a key matrix which maps the physical buttons to the keys <kbd>F10</kbd> to <kbd>F24</kbd>. These can afterwards be mapped to for example, execute a script. I used "Kwin Custom Shortcuts" for this, as that allows you to execute a different option based on the focused application. This also allows you to directly run a [bash] script, so you can script exactly what each button will do.  
+While untested, you most likely can use AutoHotKey on windows for the same functionality.
 
 The keys are set up like this:
-
-<kbd>CMD</kbd> + <kbd>control</kbd> + <kbd>shift</kbd> + 
-![](/rsc/key_layout.png)
+| <kbd>F10</kbd> <sub><sup>203</sup></sub> | <kbd>F11</kbd> <sub><sup>204</sup></sub> | <kbd>F12</kbd> <sub><sup>205</sup></sub> | <kbd>F13</kbd> <sub><sup>240</sup></sub> | <kbd>F14</kbd> <sub><sup>241</sup></sub> |
+|-----|-----|-----|-----|-----|
+| <kbd>F15</kbd> <sub><sup>242</sup></sub> | <kbd>F16</kbd> <sub><sup>243</sup></sub> | <kbd>F17</kbd> <sub><sup>244</sup></sub> | <kbd>F18</kbd> <sub><sup>245</sup></sub> | <kbd>F19</kbd> <sub><sup>246</sup></sub> |
+| <kbd>F20</kbd> <sub><sup>247</sup></sub> | <kbd>F21</kbd> <sub><sup>248</sup></sub> | <kbd>F22</kbd> <sub><sup>249</sup></sub> | <kbd>F23</kbd> <sub><sup>250</sup></sub> | <kbd>F24</kbd> <sub><sup>251</sup></sub> |
 
 # Folder structure
-
-    .
-    ├── src                         # source code for the arduino
-    └── stl                         # STL files for the case and the lid
+```
+├── src      # source code for the arduino
+└── stl      # STL files for the case and the lid
+└── cddx     # CDDX files for the circuit
+```
 
 # Bill of materials
 | Item | Description |
 | ------ | ------ |
-| 15 Cherry MX Mechanical switches with diode | I used Ebay, but the closest/cheapest the better |
-| Arduino Pro Micro 32u4 (I used a clone) | Ebay |
-| HC-05 bluetooth module | Take care to not get the "fake" one. You need to flash it with the RN-42 Firmware and the "fake" one won't work. Google is your friend here |
-| Adafruit USB-C breakout | https://www.adafruit.com/product/4090 |
-| 3mm LED | Used to indicate various actions. I used blue to match my case |
-| 1400 MaH Lipo Battery JA-803450P | You can pick another one, but the case is designed with these dimensions in mind |
-| TP4056 LiPo charger | Ebay or Aliexpress |
-| SPDT Switch | https://www.adafruit.com/product/805 |
+| 15 Cherry MX Mechanical switches | I used AliExpress, but anything should work here |
+| Seeeduino XIAO | The main microcontroller powering it all. Bought from [Seeed Studio Bazaar](https://www.seeedstudio.com/Seeeduino-XIAO-Arduino-Microcontroller-SAMD21-Cortex-M0+-p-4426.html) |
 | Diodes | |
-| 2N2222 transistor | Used to turn the bluetooth module on/off to when entering/exiting sleep mode |
-| P-channel mosfet | Used for LiPo bypass when charging. We don't want to drain the battery while it's charging, as this can break the LiPo |
-| Resistors | Used as pull-down resistors for the keyboard matrix and as a voltage divider to check the LiPo battery level |
-| Keycaps | I 3D printed some from https://www.thingiverse.com/thing:468651, but you can pick whatever you fancy |
-| Spare micro-USB cable | Canibalized to link the Arduino to the USB-C breakout board. This allows programming without taking the keyboard apart. |
+| Keycaps | I bought some clear keycaps from AliExpress which worked flawlessly |
 | 4 x anti-slip pads | Need to fit into the circular cut-outs on the bottom of the case. Help keep it steady on the desk and compensate for slight warping from 3D printing. I used transparent self-adhesive ones, but you can stick them on with anything |
 
 # The layout
-The box is designed for the components I used. It's a bit of a squeeze, but everything fits in the end. You can see its layout in the diagram below. The empty spaces are used to store wires, resistors and the NPN transistor used to turn the bluetooth board on/off.
-![](/rsc/layout_diagram.png)
+The original STL had space for all the required components used. Because I did not implement any bluetooth functionality, the box will be quite empty inside; if not for the microcontroller and cables.  
 
-# The circuit
-The keys are set up using a keyboard matrix. The top-left key is not included in the matrix, as it has to be able to wake the Arduino from sleep. It is set up as an interrupt.
+# STL
+This forked version does not have a custom modified version of the STL as I personally do not have the know-how to model such thing. Because of this, you will have to remove a support piece placed at the USB-C connector port, and there also will be some empty gaps (where the power switch was supposed to be, for example). I do wish to modify the STL at some point in the future to make it work perfectly with this version, however.
 
-Since the LiPo charger doesn't have a bypass for when it's plugged in, and it's dangerous to charge a LiPo while draining it, a bypass circuit is needed. I used the one described here and it works perfectly: https://arduino.stackexchange.com/questions/39805/can-you-charge-and-use-a-lipo-battery-at-the-same-time.
-
-# Missing stuff
-- Circuit diagram (coming soon)
-- Ghosting mitigation
-- Sending keys through the USB connection. Technically possible and the reason why I chose a 32u4 Arduino, but still to be implemented
-- LiPo voltage reading isn't the best
-- This could easily be implemented with an Adafruit Feather 32u4 Bluefruit (https://learn.adafruit.com/adafruit-feather-32u4-bluefruit-le/overview). It has on-board bluetooth, LiPo voltage reading and reporting along with a battery charger. It should simplify the circuit, fit fine in the case and could allow for a larger battery, too.
+# Circuit Diagram
+The CDDX files can be found in the `cddx` folder.  
+Wiring follows a grid matrix layout. These are then wired to the corresponding pins on the XIAO.
+![](.media/circuit.svg)
