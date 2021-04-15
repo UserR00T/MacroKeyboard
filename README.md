@@ -45,3 +45,6 @@ This forked version does not have a custom modified version of the STL as I pers
 The CDDX files can be found in the `cddx` folder.  
 Wiring follows a grid matrix layout. These are then wired to the corresponding pins on the XIAO.
 ![](.media/circuit.svg)
+
+# Xmodmap
+On unix based systems you may need to add a .Xmodmap to your home directory as otherwise the F13 to F24 keys may not be recognized correctly by some software. I've added an [example .Xmodmap](.Xmodmap) in this repo for those specific keybindings.
